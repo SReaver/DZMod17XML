@@ -112,7 +112,7 @@ namespace DZMod17XML
             }
             #endregion
 
-
+            //Вот тут у меня получилось сериализовать Лист!!!
             Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\doc.xml");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<docum>));
             xmlSer.Serialize(stream, doc);
