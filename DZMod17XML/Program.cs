@@ -111,13 +111,35 @@ namespace DZMod17XML
                 doc.Add(d);
             }
             #endregion
-          
+
 
             Stream stream = File.OpenWrite(Environment.CurrentDirectory + "\\doc.xml");
             XmlSerializer xmlSer = new XmlSerializer(typeof(List<docum>));
             xmlSer.Serialize(stream, doc);
             stream.Close();
- 
+
+            XmlDocument xDocIn = new XmlDocument();
+            xDocIn.Load("doc.xml");
+            // получим корневой элемент
+            XmlElement xRootIn = xDocIn.DocumentElement;
+            // обход всех узлов в корневом элементе
+            foreach (XmlNode xnode in xRootIn)
+            {
+                Console.WriteLine(xnode.Name.ToString());
+                foreach (XmlNode childnode in xnode.ChildNodes)
+                {
+                    Console.WriteLine("  " + childnode.Name.ToString());
+                    foreach (XmlNode item in childnode)
+                    {
+                        Console.WriteLine("    " + item.Name.ToString());
+                        foreach (XmlNode item1 in item)
+                        {
+                            Console.WriteLine("      " + item1.Name.ToString());
+                        }
+                    }
+                }
+
+            }
         }
-    }
+    }   
 }
